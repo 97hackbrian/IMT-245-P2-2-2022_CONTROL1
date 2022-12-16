@@ -45,7 +45,7 @@ int IN2 = 8;
 int IN3 = 4;
 int IN4 = 5;
 int ENB = 3;
-#define MIN_ABS_SPEED 26 //27 28 30//32
+#define MIN_ABS_SPEED 25 //27 28 30//32
 LMotorController motorController(ENA, IN1, IN2, ENB, IN3, IN4, motorSpeedFactorLeft, motorSpeedFactorRight);
 ////////////////
 

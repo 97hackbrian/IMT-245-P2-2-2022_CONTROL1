@@ -1,0 +1,69 @@
+[System]
+Name='fuzzy_5'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=25
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Angulo'
+Range=[-20 20]
+NumMFs=5
+MF1='LN1':'trimf',[-27.5 -20 -12.5]
+MF2='SN1':'trimf',[-17.5 -10 -2.5]
+MF3='Z1':'trimf',[-7.5 0 7.5]
+MF4='SP1':'trimf',[2.5 10 17.5]
+MF5='LP1':'trimf',[12.5 20 27.5]
+
+[Input2]
+Name='Angulo_der'
+Range=[-10 10]
+NumMFs=5
+MF1='LN2':'trimf',[-13.75 -10 -6.25]
+MF2='SN2':'trimf',[-8.75 -5 -1.25]
+MF3='Z2':'trimf',[-3.75 0 3.75]
+MF4='SP2':'trimf',[1.25 5 8.75]
+MF5='LP2':'trimf',[6.25 10 13.75]
+
+[Output1]
+Name='PWM'
+Range=[-120 120]
+NumMFs=5
+MF1='HSN':'trimf',[-165 -120 -75]
+MF2='LSN':'trimf',[-105 -60 -15]
+MF3='ZS':'trimf',[-45 0 45]
+MF4='LSP':'trimf',[15 60 105]
+MF5='HSP':'trimf',[75 120 165]
+
+[Rules]
+1 1, 5 (1) : 1
+1 2, 5 (1) : 1
+1 3, 4 (1) : 1
+1 4, 4 (1) : 1
+1 5, 3 (1) : 1
+2 1, 5 (1) : 1
+2 2, 4 (1) : 1
+2 3, 4 (1) : 1
+2 4, 3 (1) : 1
+2 5, 2 (1) : 1
+3 1, 4 (1) : 1
+3 2, 4 (1) : 1
+3 3, 3 (1) : 1
+3 4, 2 (1) : 1
+3 5, 2 (1) : 1
+4 1, 4 (1) : 1
+4 2, 3 (1) : 1
+4 3, 2 (1) : 1
+4 4, 2 (1) : 1
+4 5, 1 (1) : 1
+5 1, 3 (1) : 1
+5 2, 2 (1) : 1
+5 3, 2 (1) : 1
+5 4, 1 (1) : 1
+5 5, 1 (1) : 1

@@ -7,7 +7,7 @@
  #include "Wire.h"
 #endif
 
-#define MIN_ABS_SPEED 0//1
+#define MIN_ABS_SPEED 25//1
 
 MPU6050 mpu;
 
@@ -173,7 +173,7 @@ void loop()
  mpu.dmpGetGravity(&gravity, &q);
  mpu.dmpGetYawPitchRoll(ypr, &q, &gravity);
  input = ypr[1] * 180/M_PI + 180;
-
+/*
  Serial.println(distancia());
  if(int(distancia())>320&&int(distancia())<800){
   setpoint=183.41;
@@ -181,6 +181,6 @@ void loop()
  }
  else{
   setpoint=183.2;
-  digitalWrite(13,0);}
+  digitalWrite(13,0);}*/
  }
 }

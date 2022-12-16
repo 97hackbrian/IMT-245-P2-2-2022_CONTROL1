@@ -78,14 +78,14 @@ Fuzzy *fuzzy = new Fuzzy();
 
 // FuzzyInput
 
-
+/*
 // FuzzyDInput
 FuzzySet *DBmax = new FuzzySet(-19, -19, -18, -16);
 FuzzySet *DBmin = new FuzzySet(-18, -15, -15, -10);
 FuzzySet *DStop = new FuzzySet(-10, 0, 0, 10);
 FuzzySet *DFmin = new FuzzySet(10, 15, 15, 18);
 FuzzySet *DFmax = new FuzzySet(16, 18, 19, 19);
-
+*/
 /*
 // FuzzyInput
 FuzzySet *back = new FuzzySet(-20, -20, -10, -5);
@@ -109,11 +109,11 @@ void setup() {
   //distance = Angle()-182.7;
 
   FuzzyInput *angle = new FuzzyInput(1);
-  FuzzySet *Bmax = new FuzzySet(-30, -30, -29, -1);//13
+  FuzzySet *Bmax = new FuzzySet(-50, -40, -29, -2);//13
 //FuzzySet *Bmin = new FuzzySet(-8, -5, -5, -1);
-FuzzySet *z1 = new FuzzySet(-1, 0, 0, 1);
+FuzzySet *z1 = new FuzzySet(-2, 0, 0, 2);
 //FuzzySet *Fmin = new FuzzySet(1, 5, 5, 8);
-FuzzySet *Fmax = new FuzzySet(1, 29, 30, 30);
+FuzzySet *Fmax = new FuzzySet(2, 29, 40, 50);
   
   angle->addFuzzySet(Bmax);
   angle->addFuzzySet(z1);
@@ -122,11 +122,11 @@ FuzzySet *Fmax = new FuzzySet(1, 29, 30, 30);
   fuzzy->addFuzzyInput(angle);
 //////////////////////////////////////////////////////////
 FuzzyInput *Dangle = new FuzzyInput(2);
-  FuzzySet *DBmax = new FuzzySet(-50, -40, -40, -10);//13
+  FuzzySet *DBmax = new FuzzySet(-70, -40, -40, -10);//13
 //FuzzySet *Bmin = new FuzzySet(-8, -5, -5, -1);
 FuzzySet *Dz1 = new FuzzySet(-10, 0, 0, 10);
 //FuzzySet *Fmin = new FuzzySet(1, 5, 5, 8);
-FuzzySet *DFmax = new FuzzySet(10, 40, 40, 50);
+FuzzySet *DFmax = new FuzzySet(10, 40, 40, 70);
   Dangle->addFuzzySet(DBmax);
   Dangle->addFuzzySet(Dz1);
   Dangle->addFuzzySet(DFmax);
@@ -153,13 +153,13 @@ FuzzySet *DFmax = new FuzzySet(10, 40, 40, 50);
 
   // FuzzyOutput
   FuzzyOutput *speedOutput = new FuzzyOutput(1);
-  FuzzySet *Bmaximum = new FuzzySet(-120, -120, -80, -1);
+  FuzzySet *Bmaximum = new FuzzySet(-120, -120, -37, -1);//-80
 //FuzzySet *Bmedium = new FuzzySet(-80, -60, -50, -40);
 //FuzzySet *Bless = new FuzzySet(-40, -30, -30, -20);
 FuzzySet *nada = new FuzzySet(-1, 0, 0, 1);
 //FuzzySet *Fless = new FuzzySet(20, 30, 30, 40);
 //FuzzySet *Fmedium = new FuzzySet(40, 50, 60, 80);
-FuzzySet *Fmaximum = new FuzzySet(1, 80, 120, 120);
+FuzzySet *Fmaximum = new FuzzySet(1, 37, 120, 120);//1, 37, 120, 120
   
   
   speedOutput->addFuzzySet(Bmaximum);  
@@ -174,7 +174,7 @@ FuzzySet *Fmaximum = new FuzzySet(1, 80, 120, 120);
   IfBmaxAndDBmax->joinWithAND(Bmax,DBmax);
 
   FuzzyRuleConsequent *ThenBmaxAndDBmax = new FuzzyRuleConsequent();
-  ThenBmaxAndDBmax->addOutput(Fmaximum);
+  ThenBmaxAndDBmax->addOutput(Bmaximum);
 
   FuzzyRule *fuzzyRule1 = new FuzzyRule(1, IfBmaxAndDBmax, ThenBmaxAndDBmax);
   fuzzy->addFuzzyRule(fuzzyRule1);
@@ -196,7 +196,7 @@ FuzzyRuleAntecedent *IfBmaxAndDFmax = new FuzzyRuleAntecedent();
   IfBmaxAndDFmax->joinWithAND(Bmax,DFmax);
 
   FuzzyRuleConsequent *ThenBmaxAndDFmax = new FuzzyRuleConsequent();
-  ThenBmaxAndDFmax->addOutput(Bmaximum);
+  ThenBmaxAndDFmax->addOutput(Fmaximum);
 
   FuzzyRule *fuzzyRule3 = new FuzzyRule(3, IfBmaxAndDFmax, ThenBmaxAndDFmax);
   fuzzy->addFuzzyRule(fuzzyRule3);
@@ -208,7 +208,7 @@ FuzzyRuleAntecedent *IfBmaxAndDFmax = new FuzzyRuleAntecedent();
   Ifz1AndDBmax->joinWithAND(z1,DBmax);
 
   FuzzyRuleConsequent *Thenz1AndDBmax = new FuzzyRuleConsequent();
-  Thenz1AndDBmax->addOutput(Fmaximum);
+  Thenz1AndDBmax->addOutput(Bmaximum);
 
   FuzzyRule *fuzzyRule4 = new FuzzyRule(4, Ifz1AndDBmax, Thenz1AndDBmax);
   fuzzy->addFuzzyRule(fuzzyRule4);
@@ -231,7 +231,7 @@ FuzzyRuleAntecedent *IfBmaxAndDFmax = new FuzzyRuleAntecedent();
   Ifz1AndDFmax->joinWithAND(z1,DFmax);
 
   FuzzyRuleConsequent *Thenz1AndDFmax = new FuzzyRuleConsequent();
-  Thenz1AndDFmax->addOutput(Bmaximum);
+  Thenz1AndDFmax->addOutput(Fmaximum);
 
   FuzzyRule *fuzzyRule6 = new FuzzyRule(6, Ifz1AndDFmax,Thenz1AndDFmax);
   fuzzy->addFuzzyRule(fuzzyRule6);
@@ -242,7 +242,7 @@ FuzzyRuleAntecedent *IfBmaxAndDFmax = new FuzzyRuleAntecedent();
   IfFmaxAndDBmax->joinWithAND(Fmax,DBmax);
 
   FuzzyRuleConsequent *ThenFmaxAndDBmax = new FuzzyRuleConsequent();
-  ThenFmaxAndDBmax->addOutput(Fmaximum);
+  ThenFmaxAndDBmax->addOutput(Bmaximum);
 
   FuzzyRule *fuzzyRule7 = new FuzzyRule(7, IfFmaxAndDBmax,ThenFmaxAndDBmax);
   fuzzy->addFuzzyRule(fuzzyRule7);
@@ -265,7 +265,7 @@ FuzzyRuleAntecedent *IfBmaxAndDFmax = new FuzzyRuleAntecedent();
   IfFmaxAndDFmax->joinWithAND(Fmax,DFmax);
 
   FuzzyRuleConsequent *ThenFmaxAndDFmax = new FuzzyRuleConsequent();
-  ThenFmaxAndDFmax->addOutput(Bmaximum);
+  ThenFmaxAndDFmax->addOutput(Fmaximum);
 
   FuzzyRule *fuzzyRule9 = new FuzzyRule(9, IfFmaxAndDFmax,ThenFmaxAndDFmax);
   fuzzy->addFuzzyRule(fuzzyRule9);
